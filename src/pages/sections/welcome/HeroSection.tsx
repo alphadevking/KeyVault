@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Button, Grid, Heading, Text, Flex, Image, Link } from "@chakra-ui/react";
+import { Box, Button, Grid, Heading, Text, Flex, Image } from "@chakra-ui/react";
 import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
+import { Link } from "react-router";
 
 // Chakra + Motion Integration
 const MotionBox = motion.create(Box);
@@ -56,8 +57,7 @@ const HeroSection: React.FC = () => {
                 </MotionText>
 
                 <MotionLink
-                    href={"/core/generate"}
-                    asChild
+                    to={"/core/generate"}
                 >
                     <MotionButton
                         colorScheme="green"
