@@ -17,10 +17,10 @@ const FeaturesSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 textAlign="center"
-                fontFamily={"faustina"}
             >
                 Key Features
             </MotionHeading>
+
             <Grid
                 templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }}
                 gap={6}
@@ -31,8 +31,7 @@ const FeaturesSection: React.FC = () => {
                         p={6}
                         borderRadius="md"
                         shadow="md"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        layoutId="modal"
                         transition={{ duration: 0.8, delay: index * 0.2 }}
                     >
                         <Heading fontSize="xl" mb={4}>

@@ -1,14 +1,21 @@
+import Footer from "../components/footer";
 import { Navbar } from "../components/navbar";
-import { CallToActionSection, FeaturesSection, HeroSection, TestimonialsSection } from "./sections/welcome";
+import {
+    // CallToActionSection,
+    // FeaturesSection,
+    HeroSection,
+    TestimonialsSection
+} from "./sections/welcome";
 
 const Welcome = () => {
     return (
         <>
             <Navbar />
             <HeroSection />
-            <FeaturesSection />
+            {/* <FeaturesSection /> */}
             <TestimonialsSection />
-            <CallToActionSection />
+            {/* <CallToActionSection /> */}
+            <Footer />
         </>
     );
 };

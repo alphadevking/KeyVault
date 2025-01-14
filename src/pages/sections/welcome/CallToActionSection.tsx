@@ -23,7 +23,6 @@ const CallToActionSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 textAlign="center"
-                fontFamily={"faustina"}
             >
                 Get Started Today!
             </MotionHeading>

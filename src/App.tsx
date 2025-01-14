@@ -1,6 +1,9 @@
 import { Route, Routes } from 'react-router';
 import { CoreGenerator, Welcome } from './pages';
 
+// Import Swiper styles
+import "swiper/swiper-bundle.css";
+
 function App() {
   return (
     <>
