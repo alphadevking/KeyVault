@@ -1,13 +1,16 @@
-import HeroSection from "../components/HeroSection";
 import { Navbar } from "../components/navbar";
+import { CallToActionSection, FeaturesSection, HeroSection, TestimonialsSection } from "./sections/welcome";
 
 const Welcome = () => {
-  return (
-      <>
-          <Navbar />
-          <HeroSection />
-      </>
-  )
-}
+    return (
+        <>
+            <Navbar />
+            <HeroSection />
+            <FeaturesSection />
+            <TestimonialsSection />
+            <CallToActionSection />
+        </>
+    );
+};
 
-export default Welcome
+export default Welcome;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid, Heading, Text, Flex, Image } from "@chakra-ui/react";
+import { Box, Button, Grid, Heading, Text, Flex, Image, Link } from "@chakra-ui/react";
 import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
 
@@ -8,6 +8,7 @@ const MotionBox = motion.create(Box);
 const MotionHeading = motion.create(Heading);
 const MotionText = motion.create(Text);
 const MotionButton = motion.create(Button);
+const MotionLink = motion.create(Link);
 
 const HeroSection: React.FC = () => {
     return (
@@ -54,22 +55,27 @@ const HeroSection: React.FC = () => {
                     passwords and hello to robust security.
                 </MotionText>
 
-                <MotionButton
-                    colorScheme="green"
-                    size={"md"}
-                    className="group"
-                    variant={"solid"}
-                    bg={"green.400"}
-                    color={"white"}
-                    _hover={{ bg: "green.500", outline: "4px dashed", outlineColor: "green.400" }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    w={"fit-content"}
-                    mx={{ base: "auto", lg: 0 }}
+                <MotionLink
+                    href={"/core/generate"}
+                    asChild
                 >
-                    Start Free Trial <LuArrowRightFromLine className="group-hover:ml-2 transition-all" />
-                </MotionButton>
+                    <MotionButton
+                        colorScheme="green"
+                        size={"md"}
+                        className="group"
+                        variant={"solid"}
+                        bg={"green.400"}
+                        color={"white"}
+                        _hover={{ bg: "green.500", outline: "4px dashed", outlineColor: "green.400" }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        w={"fit-content"}
+                        mx={{ base: "auto", lg: 0 }}
+                    >
+                        Start Free Trial <LuArrowRightFromLine className="group-hover:ml-2 transition-all" />
+                    </MotionButton>
+                </MotionLink>
             </Flex>
 
             {/* Right Section - Grid of Animated Blocks */}
@@ -79,6 +85,7 @@ const HeroSection: React.FC = () => {
                 spaceY={5}
                 spaceX={5}
                 flex="1"
+                display={{ base: "none", lg: "grid" }}
             >
                 {/* Block 1 */}
                 <MotionBox
@@ -99,7 +106,7 @@ const HeroSection: React.FC = () => {
                         h="100%"
                         objectFit="cover"
                     />
-                    <Text
+                    {/* <Text
                         fontSize="sm"
                         fontWeight="bold"
                         p={4}
@@ -111,7 +118,7 @@ const HeroSection: React.FC = () => {
                         right="0"
                     >
                         Generate Strong Passwords
-                    </Text>
+                    </Text> */}
                 </MotionBox>
 
                 {/* Block 2 */}
@@ -133,7 +140,7 @@ const HeroSection: React.FC = () => {
                         h="100%"
                         objectFit="cover"
                     />
-                    <Text
+                    {/* <Text
                         fontSize="xl"
                         fontWeight="bold"
                         p={4}
@@ -145,7 +152,7 @@ const HeroSection: React.FC = () => {
                         right="0"
                     >
                         Store Passkeys Securely
-                    </Text>
+                    </Text> */}
                 </MotionBox>
 
                 {/* Block 3 */}
@@ -167,7 +174,7 @@ const HeroSection: React.FC = () => {
                         h="100%"
                         objectFit="cover"
                     />
-                    <Text
+                    {/* <Text
                         fontSize="sm"
                         fontWeight="bold"
                         p={4}
@@ -179,7 +186,7 @@ const HeroSection: React.FC = () => {
                         right="0"
                     >
                         Accessible Anywhere
-                    </Text>
+                    </Text> */}
                 </MotionBox>
 
                 {/* Block 4 */}
@@ -201,7 +208,7 @@ const HeroSection: React.FC = () => {
                         h="100%"
                         objectFit="cover"
                     />
-                    <Text
+                    {/* <Text
                         fontSize="sm"
                         fontWeight="bold"
                         p={4}
@@ -214,7 +221,7 @@ const HeroSection: React.FC = () => {
                         right="0"
                     >
                         Your Security, Our Priority
-                    </Text>
+                    </Text> */}
                 </MotionBox>
             </Grid>
         </Flex>
