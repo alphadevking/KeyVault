@@ -1,17 +1,17 @@
-import { Box, Container, Flex, Stack, Text, Image, Separator } from "@chakra-ui/react";
-import { LuFacebook, LuGithub, LuInstagram } from "react-icons/lu";
+import { Box, Container, Flex, Stack, Text, Image, Separator, IconButton } from "@chakra-ui/react";
 import { Link } from "react-router";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaGithubAlt, FaInstagram, FaXTwitter } from "react-icons/fa6";
+import { GooglePlay } from "../assets";
 
 const Footer = () => {
     return (
-        <Box py={8}>
+        <Box py={8} fontSize={{ base: "xs", md: "sm" }}>
             <Separator pb={8} />
             <Container maxW="6xl">
                 <Flex direction={{ base: "column", md: "row" }} justify="space-between">
                     {/* Company Section */}
                     <Stack gap={4} mb={{ base: 8, md: 0 }}>
-                        <Text fontWeight="bold" fontSize="lg">
+                        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
                             Company
                         </Text>
                         <Stack gap={2}>
@@ -32,7 +32,7 @@ const Footer = () => {
 
                     {/* Help Section */}
                     <Stack gap={4} mb={{ base: 8, md: 0 }}>
-                        <Text fontWeight="bold" fontSize="lg">
+                        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
                             Help
                         </Text>
                         <Stack gap={2}>
@@ -53,7 +53,7 @@ const Footer = () => {
 
                     {/* Resources Section */}
                     <Stack gap={4} mb={{ base: 8, md: 0 }}>
-                        <Text fontWeight="bold" fontSize="lg">
+                        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
                             Resources
                         </Text>
                         <Stack gap={2}>
@@ -74,12 +74,12 @@ const Footer = () => {
 
                     {/* Install App Section */}
                     <Stack gap={4}>
-                        <Text fontWeight="bold" fontSize="lg">
+                        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
                             Install App
                         </Text>
                         <Stack gap={2}>
                             <Image
-                                src="/brand-logos/google-play-png-logo-3799.png"
+                                src={GooglePlay}
                                 alt="Google Play"
                                 width="140px"
                             />
@@ -98,24 +98,53 @@ const Footer = () => {
                         direction={{ base: "column", md: "row" }}
                         justify="space-between"
                         align="center"
+                        gap={4}
                     >
-                        <Text fontSize="sm">
-                            © Copyright 2022, All Rights Reserved by Nexhub Labs. KeyVault -
-                            Your trusted app for password generation, secure storage, and easy retrieval.
-                        </Text>
+                        <Box>
+                            <Text fontSize={{ base: "xs", md: "sm" }}>
+                                © Copyright {new Date().getFullYear()}, All Rights Reserved by Nexhub Labs.
+                            </Text>
+                            <Text fontSize={{ base: "xs" }}>
+                                Key<Box as="span" color="green.400">Vault</Box> <Box as="span" opacity={0.7}>is your trusted app for password generation, secure storage, and easy retrieval.</Box>
+                            </Text>
+                        </Box>
                         <Stack direction="row" gap={4}>
-                            <Link to="#">
-                                <FaXTwitter width="34px" />
-                            </Link>
-                            <Link to="#">
-                                <LuFacebook width="34px" />
-                            </Link>
-                            <Link to="#">
-                                <LuInstagram width="34px" />
-                            </Link>
-                            <Link to="#">
-                                <LuGithub width="34px" />
-                            </Link>
+                            <IconButton
+                                variant={"ghost"}
+                                as="a"
+                                rel="noopener noreferrer"
+                                aria-label="Twitter"
+                                children={<FaXTwitter href="https://twitter.com/NexhubLabs" target="_blank" />}
+                                fontSize={{ base: "sm", md: "xl" }}
+                                _hover={{ scale: 1.1 }}
+                            />
+                            <IconButton
+                                variant={"ghost"}
+                                as="a"
+                                rel="noopener noreferrer"
+                                aria-label="Facebook"
+                                children={<FaFacebook href="https://www.facebook.com/nexhub.labs" target="_blank" />}
+                                fontSize={{ base: "sm", md: "xl" }}
+                                _hover={{ scale: 1.1 }}
+                            />
+                            <IconButton
+                                variant={"ghost"}
+                                as="a"
+                                rel="noopener noreferrer"
+                                aria-label="Linkedin"
+                                children={<FaInstagram href="https://www.linkedin.com/company/nexhub-labs" />}
+                                fontSize={{ base: "sm", md: "xl" }}
+                                _hover={{ scale: 1.1 }}
+                            />
+                            <IconButton
+                                variant={"ghost"}
+                                as="a"
+                                rel="noopener noreferrer"
+                                aria-label="Linkedin"
+                                children={<FaGithubAlt href="https://www.linkedin.com/company/nexhub-labs" />}
+                                fontSize={{ base: "sm", md: "xl" }}
+                                _hover={{ scale: 1.1 }}
+                            />
                         </Stack>
                     </Flex>
                 </Box>

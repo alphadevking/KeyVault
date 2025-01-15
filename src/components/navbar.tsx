@@ -57,7 +57,9 @@ const MobileMenu = ({ menuItems }: { menuItems: { label: string; path: string; }
             <Drawer.Content h={"99vh"} rounded="md" top={0.5} right={0} position="fixed" zIndex="9999">
                 <Drawer.Header p={6}>
                     <HStack justifyContent={"space-between"}>
-                        <Drawer.Title>FO</Drawer.Title>
+                        <Drawer.Title>
+                            Key<Box as="span" color="green.400">Vault</Box>
+                        </Drawer.Title>
                         <Drawer.CloseTrigger children={<LuX />} />
                     </HStack>
                 </Drawer.Header>
