@@ -11,7 +11,6 @@ import { heroTilted } from "../../../utils/data";
 const MotionHeading = motion.create(Heading);
 const MotionText = motion.create(Text);
 const MotionButton = motion.create(Button);
-const MotionLink = motion.create(Link);
 
 const HeroSection: React.FC = () => {
     return (
@@ -60,7 +59,7 @@ const HeroSection: React.FC = () => {
                     passwords and hello to robust security.
                 </MotionText>
 
-                <MotionLink
+                <Link
                     to={"/core/generate"}
                 >
                     <MotionButton
@@ -77,9 +76,9 @@ const HeroSection: React.FC = () => {
                         w={"fit-content"}
                         mx={{ base: "auto", lg: 0 }}
                     >
-                        Start Free Trial <LuArrowRightFromLine className="group-hover:ml-2 transition-all" />
+                        Start Now <LuArrowRightFromLine className="group-hover:ml-2 transition-all" />
                     </MotionButton>
-                </MotionLink>
+                </Link>
             </Flex>
 
             {/* Right Section - Grid of Animated Blocks */}

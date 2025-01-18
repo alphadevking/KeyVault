@@ -1,7 +1,9 @@
+import { Box } from "@chakra-ui/react";
 import Footer from "../components/footer";
 import { Navbar } from "../components/navbar";
 import {
-    // CallToActionSection,
+    CallToActionSection,
+    FAQ,
     // FeaturesSection,
     HeroSection,
     TestimonialsSection
@@ -10,12 +12,15 @@ import {
 const Welcome = () => {
     return (
         <>
-            <Navbar />
-            <HeroSection />
-            {/* <FeaturesSection /> */}
-            <TestimonialsSection />
-            {/* <CallToActionSection /> */}
-            <Footer />
+            <Box>
+                <Navbar />
+                <HeroSection />
+                {/* <FeaturesSection /> */}
+                <TestimonialsSection />
+                <CallToActionSection />
+                <FAQ />
+                <Footer />
+            </Box>
         </>
     );
 };

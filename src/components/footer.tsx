@@ -2,12 +2,15 @@ import { Box, Container, Flex, Stack, Text, Image, Separator, IconButton } from 
 import { Link } from "react-router";
 import { FaFacebook, FaGithubAlt, FaInstagram, FaXTwitter } from "react-icons/fa6";
 import { GooglePlay } from "../assets";
+import { motion } from "motion/react";
+
+const MotionIcon = motion.create(IconButton);
 
 const Footer = () => {
     return (
         <Box py={8} fontSize={{ base: "xs", md: "sm" }}>
             <Separator pb={8} />
-            <Container maxW="6xl">
+            <Container maxW={"6xl"}>
                 <Flex direction={{ base: "column", md: "row" }} justify="space-between">
                     {/* Company Section */}
                     <Stack gap={4} mb={{ base: 8, md: 0 }}>
@@ -74,16 +77,20 @@ const Footer = () => {
 
                     {/* Install App Section */}
                     <Stack gap={4}>
-                        <Text fontWeight="bold" fontSize={{ base: "md", md: "lg" }}>
-                            Install App
+                        <Text fontWeight="semibold" fontSize={{ base: "md", md: "lg" }}>
+                            KeyVault is available on Android and iOS
                         </Text>
                         <Stack gap={2}>
                             <Image
+                                border={"2px solid #ffffff70"}
+                                rounded={"lg"}
                                 src={GooglePlay}
                                 alt="Google Play"
                                 width="140px"
                             />
                             <Image
+                                border={"1px solid #ffffff70"}
+                                rounded={"lg"}
                                 src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
                                 alt="App Store"
                                 width="140px"
@@ -108,43 +115,43 @@ const Footer = () => {
                                 Key<Box as="span" color="green.400">Vault</Box> <Box as="span" opacity={0.7}>is your trusted app for password generation, secure storage, and easy retrieval.</Box>
                             </Text>
                         </Box>
-                        <Stack direction="row" gap={4}>
-                            <IconButton
-                                variant={"ghost"}
-                                as="a"
-                                rel="noopener noreferrer"
-                                aria-label="Twitter"
-                                children={<FaXTwitter href="https://twitter.com/NexhubLabs" target="_blank" />}
-                                fontSize={{ base: "sm", md: "xl" }}
-                                _hover={{ scale: 1.1 }}
-                            />
-                            <IconButton
-                                variant={"ghost"}
-                                as="a"
-                                rel="noopener noreferrer"
-                                aria-label="Facebook"
-                                children={<FaFacebook href="https://www.facebook.com/nexhub.labs" target="_blank" />}
-                                fontSize={{ base: "sm", md: "xl" }}
-                                _hover={{ scale: 1.1 }}
-                            />
-                            <IconButton
-                                variant={"ghost"}
-                                as="a"
-                                rel="noopener noreferrer"
-                                aria-label="Linkedin"
-                                children={<FaInstagram href="https://www.linkedin.com/company/nexhub-labs" />}
-                                fontSize={{ base: "sm", md: "xl" }}
-                                _hover={{ scale: 1.1 }}
-                            />
-                            <IconButton
-                                variant={"ghost"}
-                                as="a"
-                                rel="noopener noreferrer"
-                                aria-label="Linkedin"
-                                children={<FaGithubAlt href="https://www.linkedin.com/company/nexhub-labs" />}
-                                fontSize={{ base: "sm", md: "xl" }}
-                                _hover={{ scale: 1.1 }}
-                            />
+                        <Stack direction="row" gap={2}>
+                            <Link to="https://twitter.com/NexhubLabs" target="_blank" rel="noopener noreferrer">
+                                <MotionIcon
+                                    aria-label="Twitter"
+                                    children={<FaXTwitter />}
+                                    fontSize={{ base: "sm", md: "xl" }}
+                                    whileHover={{ scale: 1.2 }}
+                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
+                                />
+                            </Link>
+                            <Link to="https://www.facebook.com/nexhub.labs" target="_blank" rel="noopener noreferrer">
+                                <MotionIcon
+                                    aria-label="Facebook"
+                                    children={<FaFacebook />}
+                                    fontSize={{ base: "sm", md: "xl" }}
+                                    whileHover={{ scale: 1.2 }}
+                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
+                                />
+                            </Link>
+                            <Link to="https://www.linkedin.com/company/nexhub-labs" target="_blank" rel="noopener noreferrer">
+                                <MotionIcon
+                                    aria-label="Linkedin"
+                                    children={<FaInstagram />}
+                                    fontSize={{ base: "sm", md: "xl" }}
+                                    whileHover={{ scale: 1.2 }}
+                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
+                                />
+                            </Link>
+                            <Link to="https://www.linkedin.com/company/nexhub-labs" target="_blank" rel="noopener noreferrer">
+                                <MotionIcon
+                                    aria-label="Linkedin"
+                                    children={<FaGithubAlt />}
+                                    fontSize={{ base: "sm", md: "xl" }}
+                                    whileHover={{ scale: 1.2 }}
+                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
+                                />
+                            </Link>
                         </Stack>
                     </Flex>
                 </Box>

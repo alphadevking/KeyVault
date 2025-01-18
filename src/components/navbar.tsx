@@ -6,6 +6,7 @@ import {
     Heading,
     HStack,
     IconButton,
+    Image,
     Separator,
     VStack
 } from "@chakra-ui/react";
@@ -54,11 +55,16 @@ const MobileMenu = ({ menuItems }: { menuItems: { label: string; path: string; }
                 />
             </Drawer.Trigger>
             <Drawer.Backdrop />
-            <Drawer.Content h={"99vh"} rounded="md" top={0.5} right={0} position="fixed" zIndex="9999">
+            <Drawer.Content rounded="sm" position="fixed" top={"7"} right={0} zIndex="9999">
                 <Drawer.Header p={6}>
                     <HStack justifyContent={"space-between"}>
                         <Drawer.Title>
-                            Key<Box as="span" color="green.400">Vault</Box>
+                            <Flex direction={"row"} justify={"center"} align={"center"}>
+                                <Image src="/kv_outline.svg" alt="Logo" boxSize={8} objectFit="contain" />
+                                <Heading size="lg" as="h1" fontWeight="bold" color={"gray.600"}>
+                                    Key<Box as="span" color="green.400">Vault</Box>
+                                </Heading>
+                            </Flex>
                         </Drawer.Title>
                         <Drawer.CloseTrigger children={<LuX />} />
                     </HStack>
@@ -99,9 +105,12 @@ export const Navbar = () => {
             backdropFilter="saturate(180%) blur(10px)"
         >
             <Link to="/">
-                <Heading size="lg" as="h1" fontWeight="bold" color={"gray.600"}>
-                    Key<Box as="span" color="green.400">Vault</Box>
-                </Heading>
+                <Flex direction={"row"} justify={"center"} align={"center"}>
+                    <Image src="/kv_outline.svg" alt="Logo" boxSize={8} objectFit="contain" />
+                    <Heading size="lg" as="h1" fontWeight="bold" color={"gray.600"}>
+                        Key<Box as="span" color="green.400">Vault</Box>
+                    </Heading>
+                </Flex>
             </Link>
             <DesktopMenu menuItems={menuItems} />
             <MobileMenu menuItems={menuItems} />
