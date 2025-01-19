@@ -26,7 +26,7 @@ const testimonials = [
             name: "kaggle",
             locale: "",
             position: "cto",
-            icon: "",
+            icon: "https://static.thenounproject.com/png/7162263-512.png",
         },
     },
     {
@@ -37,7 +37,7 @@ const testimonials = [
             name: "mezora",
             locale: "",
             position: "md/ceo",
-            icon: "",
+            icon: "https://static.thenounproject.com/png/6620412-512.png",
         },
     },
     {
@@ -48,7 +48,7 @@ const testimonials = [
             name: "sinclair",
             locale: "",
             position: "coo",
-            icon: "",
+            icon: "https://static.thenounproject.com/png/7162263-512.png",
         },
     },
 ];

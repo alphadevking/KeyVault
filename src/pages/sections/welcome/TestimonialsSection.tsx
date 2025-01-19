@@ -31,7 +31,7 @@ const TestimonialsSection: React.FC = () => {
             {/* Section Heading */}
             <Box w={{ base: "100%", lg: "50%" }} textAlign={"left"}>
                 <MotionHeading
-                    fontSize={{ base: "4xl", md: "5xl" }}
+                    fontSize={{ base: "3xl", md: "5xl" }}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
@@ -40,7 +40,7 @@ const TestimonialsSection: React.FC = () => {
                     What our
                 </MotionHeading>
                 <MotionHeading
-                    fontSize={{ base: "5xl", md: "6xl" }}
+                    fontSize={{ base: "4xl", md: "6xl" }}
                     mb={4}
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -75,11 +75,18 @@ const TestimonialsSection: React.FC = () => {
             {/* Testimonial Cards with Swiper */}
             <Box w={{ base: "100%", lg: "50%" }}>
                 <Swiper
-                    slidesPerView={1}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 1,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                        },
+                    }}
                     spaceBetween={20}
                     loop={true}
                     autoplay
-                    speed={3000}
+                    speed={500}
                     modules={[Navigation]}
                     onSlideChange={handleSlideChange} // Track active slide
                 >
@@ -89,7 +96,7 @@ const TestimonialsSection: React.FC = () => {
                                 border="1px solid #f3f3f315"
                                 shadow="sm"
                                 p={6}
-                                h={{ base: 300, md: 400 }}
+                                h={{ base: "100%", md: 400 }}
                                 w={"100%"}
                                 bg={useColorModeValue("black", "white")}
                                 color={useColorModeValue("white", "black")}
@@ -106,7 +113,7 @@ const TestimonialsSection: React.FC = () => {
                                     borderLeftColor={useColorModeValue("whiteAlpha.400", "blackAlpha.400")}
                                     alignSelf={"bottom"}
                                 >
-                                    <Blockquote.Content fontStyle={"italic"} p={4} fontSize={{ base: "sm", md: "md" }} fontSmooth={"always"}>
+                                    <Blockquote.Content fontStyle={"italic"} p={4} fontSize={{ base: "sm", md: "md" }} fontSmooth={"always"} h={150}>
                                         <Text>
                                             {testimonial.feedback}
                                         </Text>
