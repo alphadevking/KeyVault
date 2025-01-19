@@ -95,7 +95,8 @@ const TestimonialsSection: React.FC = () => {
                             <Box
                                 border="1px solid #f3f3f315"
                                 shadow="sm"
-                                p={6}
+                                px={4}
+                                py={2}
                                 h={{ base: "100%", md: 400 }}
                                 w={"100%"}
                                 bg={useColorModeValue("black", "white")}
@@ -113,7 +114,7 @@ const TestimonialsSection: React.FC = () => {
                                     borderLeftColor={useColorModeValue("whiteAlpha.400", "blackAlpha.400")}
                                     alignSelf={"bottom"}
                                 >
-                                    <Blockquote.Content fontStyle={"italic"} p={4} fontSize={{ base: "sm", md: "md" }} fontSmooth={"always"} h={150}>
+                                    <Blockquote.Content fontStyle={"italic"} p={4} fontSize={{ base: "sm", md: "md" }} fontSmooth={"always"} h={{ base: "100%", md: 150 }}>
                                         <Text>
                                             {testimonial.feedback}
                                         </Text>
