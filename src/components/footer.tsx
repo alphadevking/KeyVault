@@ -118,38 +118,38 @@ const Footer = () => {
                         <Stack direction="row" gap={2}>
                             <Link to="https://twitter.com/NexhubLabs" target="_blank" rel="noopener noreferrer">
                                 <MotionIcon
+                                    variant={"ghost"}
                                     aria-label="Twitter"
                                     children={<FaXTwitter />}
                                     fontSize={{ base: "sm", md: "xl" }}
                                     whileHover={{ scale: 1.2 }}
-                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
                                 />
                             </Link>
                             <Link to="https://www.facebook.com/nexhub.labs" target="_blank" rel="noopener noreferrer">
                                 <MotionIcon
+                                    variant={"ghost"}
                                     aria-label="Facebook"
                                     children={<FaFacebook />}
                                     fontSize={{ base: "sm", md: "xl" }}
                                     whileHover={{ scale: 1.2 }}
-                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
                                 />
                             </Link>
                             <Link to="https://www.linkedin.com/company/nexhub-labs" target="_blank" rel="noopener noreferrer">
                                 <MotionIcon
+                                    variant={"ghost"}
                                     aria-label="Linkedin"
                                     children={<FaInstagram />}
                                     fontSize={{ base: "sm", md: "xl" }}
                                     whileHover={{ scale: 1.2 }}
-                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
                                 />
                             </Link>
                             <Link to="https://www.linkedin.com/company/nexhub-labs" target="_blank" rel="noopener noreferrer">
                                 <MotionIcon
+                                    variant={"ghost"}
                                     aria-label="Linkedin"
                                     children={<FaGithubAlt />}
                                     fontSize={{ base: "sm", md: "xl" }}
                                     whileHover={{ scale: 1.2 }}
-                                    transition={{ type: "spring", damping: 15, stiffness: 250 }}
                                 />
                             </Link>
                         </Stack>

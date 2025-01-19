@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Box, Flex, Heading, Text, Image, Span, Blockquote, Float, BlockquoteIcon, HStack, Avatar, Spacer } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { testimonials } from "../../../utils/data";
 import { useColorModeValue } from "../../../components/ui/color-mode";
 
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay } from "swiper/modules";
 import { motion } from "motion/react";
 import { capitalize, toUpperCase } from "../../../utils/changeCase";
 
@@ -13,9 +13,16 @@ const MotionHeading = motion.create(Heading);
 
 const TestimonialsSection: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const swiperRef = useRef<any>(null);
 
     const handleSlideChange = (swiper: any) => {
         setActiveIndex(swiper.realIndex); // Track the active slide index
+    };
+
+    const handleProgressClick = (index: number) => {
+        if (swiperRef.current) {
+            swiperRef.current.slideTo(index);
+        }
     };
 
     return (
@@ -66,7 +73,8 @@ const TestimonialsSection: React.FC = () => {
                             bg={activeIndex === index ? "green.500" : useColorModeValue("gray.300", "gray.600")}
                             transition="background-color 0.3s"
                             _hover={{ bg: useColorModeValue("gray.400", "gray.500") }}
-                            onClick={() => { }}
+                            onClick={() => handleProgressClick(index)} // Set Swiper to specific slide
+                            cursor="pointer"
                         />
                     ))}
                 </Flex>
@@ -85,10 +93,11 @@ const TestimonialsSection: React.FC = () => {
                     }}
                     spaceBetween={20}
                     loop={true}
-                    autoplay
+                    autoplay={{ delay: 5000 }}
                     speed={500}
-                    modules={[Navigation]}
+                    modules={[Navigation, Autoplay]}
                     onSlideChange={handleSlideChange} // Track active slide
+                    onSwiper={(swiper) => (swiperRef.current = swiper)} // Capture Swiper instance
                 >
                     {testimonials.map((testimonial, index) => (
                         <SwiperSlide key={index}>
