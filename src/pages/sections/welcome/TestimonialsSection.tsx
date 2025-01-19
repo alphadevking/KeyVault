@@ -123,7 +123,7 @@ const TestimonialsSection: React.FC = () => {
                                     borderLeftColor={useColorModeValue("whiteAlpha.400", "blackAlpha.400")}
                                     alignSelf={"bottom"}
                                 >
-                                    <Blockquote.Content fontStyle={"italic"} p={4} fontSize={{ base: "sm", md: "md" }} fontSmooth={"always"} h={{ base: "100%", md: 150 }}>
+                                    <Blockquote.Content fontStyle={"italic"} p={4} fontSize={{ base: "sm", md: "md" }} fontSmooth={"always"} h={{ base: 100, md: 150 }}>
                                         <Text>
                                             {testimonial.feedback}
                                         </Text>
