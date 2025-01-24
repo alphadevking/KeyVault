@@ -35,10 +35,11 @@ import { Checkbox } from "../../../components/ui/checkbox";
 import { ClipboardButton, ClipboardRoot } from "../../../components/ui/clipboard";
 import { generatePassword } from "../../../utils/generator";
 import { useColorModeValue } from "../../../components/ui/color-mode";
+import { cloudGenerate } from "../../../api";
 
 const PWGenerator = () => {
 
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState<string>("");
     const [includeUppercase, setIncludeUppercase] = useState<boolean>(true);
     const [includeLowercase, setIncludeLowercase] = useState<boolean>(true);
     const [includeDigits, setIncludeDigits] = useState<boolean>(true);
@@ -89,11 +90,41 @@ const PWGenerator = () => {
         localStorage.setItem("favoritePasswords", JSON.stringify(updatedFavorites));
     };
 
-    const handleGenerate = () => {
+    const handleGenerate = async () => {
+        let timeoutId: number | undefined;
+
+        const localPromise = new Promise<string>((resolve) => {
+            timeoutId = window.setTimeout(() => {
+                const localPassword = handleLocalGenerate();
+                resolve(localPassword);
+            }, 500);
+        });
+
+        try {
+            const cloudPasswordPromise = handleCloudGenerate();
+            const cloudPassword = await Promise.race([cloudPasswordPromise, localPromise]);
+            setPassword(cloudPassword);
+        } catch (error) {
+            console.error(error);
+            const localPassword = await localPromise;
+            setPassword(localPassword);
+        } finally {
+            window.clearTimeout(timeoutId);
+        }
+    };
+
+    const handleLocalGenerate = () => {
         const newPassword = generatePassword({
             includeUppercase, includeLowercase, includeDigits, includeSymbols
         });
-        setPassword(newPassword);
+        return newPassword;
+    };
+
+    const handleCloudGenerate = async () => {
+        const newPassword = await cloudGenerate({
+            includeUppercase, includeLowercase, includeDigits, includeSymbols
+        });
+        return newPassword;
     };
 
     const [activeDialogPassword, setActiveDialogPassword] = useState<string | null>(null);
@@ -107,6 +138,7 @@ const PWGenerator = () => {
     }, [favoritePasswords]); // Dependency array to track changes in favoritePasswords
 
     useEffect(() => {
+        // Retrieve stored passwords from localStorage
         const passwords = safeJsonParse(localStorage.getItem("generatedPasswords") || "[]", []);
         setStoredPasswords(passwords);
         if (passwords.length > 0) {
@@ -157,7 +189,7 @@ const PWGenerator = () => {
                         </VStack>
                         <Grid templateColumns={{ base: "1fr", md: "1fr 2fr" }} gap={6} mt={4}>
                             <GridItem>
-                                <Button bgBlendMode={"overlay"} onClick={handleGenerate} w="full">
+                                <Button bgBlendMode={"overlay"} onClick={async () => await handleGenerate()} w="full">
                                     Generate Password
                                 </Button>
                             </GridItem>
