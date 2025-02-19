@@ -3,9 +3,9 @@ import { Box, Button, Grid, Heading, Text, Flex } from "@chakra-ui/react";
 import { motion } from "motion/react";
 import { LuArrowRightFromLine } from "react-icons/lu";
 import { Link } from "react-router";
-import TiltedScroll from "../../../components/TiltedScroll/TiltedScroll";
-import ShinyText from "../../../components/ShinyText/ShinyText";
-import { heroTilted } from "../../../utils/data";
+import TiltedScroll from "../../components/TiltedScroll/TiltedScroll";
+import ShinyText from "../../components/ShinyText/ShinyText";
+import { heroTilted } from "../../utils/data";
 
 // Chakra + Motion Integration
 const MotionHeading = motion.create(Heading);
@@ -28,8 +28,8 @@ const HeroSection: React.FC = () => {
                 justify="center"
                 flex="1"
                 letterSpacing="tighter"
-                textAlign={{ base: "center", lg: "left" }}
-                mb={{ base: 10, lg: 0 }}
+                textAlign={{ base: "center", md: "left" }}
+                mb={{ base: 10, lg: 5 }}
             >
                 <MotionHeading
                     fontSize={{ base: "3xl", md: "5xl", lg: "7xl" }}
@@ -60,7 +60,8 @@ const HeroSection: React.FC = () => {
                 </MotionText>
 
                 <Link
-                    to={"/core/generate"}
+                    to={"/gen"}
+                    className="w-fit mx-auto md:mx-0"
                 >
                     <MotionButton
                         colorScheme="green"
@@ -73,8 +74,6 @@ const HeroSection: React.FC = () => {
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        w={"fit-content"}
-                        mx={{ base: "auto", lg: 0 }}
                     >
                         Start Now <LuArrowRightFromLine className="group-hover:ml-2 transition-all" />
                     </MotionButton>

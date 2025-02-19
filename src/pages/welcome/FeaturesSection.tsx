@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
 import { motion } from "motion/react";
-import { features } from "../../../utils/data";
+import { features } from "../../utils/data";
 
 // Chakra + Motion Integration
 const MotionBox = motion.create(Box);

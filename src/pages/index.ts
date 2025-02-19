@@ -1,2 +1,10 @@
-export { default as Welcome } from './Welcome';
-export { default as CoreGenerator } from './CoreGenerator';
+export { default as Welcome } from './welcome/Welcome';
+export { default as CoreGenerator } from './core-generator/CoreGenerator';
+export { default as Signup } from './auth/signup';
+export { default as Login } from './auth/login';
+// export { default as ForgotPassword } from './auth/ForgotPassword';
+// export { default as ResetPassword } from './auth/ResetPassword';
+// export { default as Dashboard } from './dashboard/Dashboard';
+// export { default as Profile } from './profile/Profile';
+// export { default as Settings } from './settings/Settings';
+// export { default as NotFound } from './not-found/NotFound';

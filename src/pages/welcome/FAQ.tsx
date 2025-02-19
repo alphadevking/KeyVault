@@ -1,6 +1,6 @@
 import { Box, Container, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import { AccordionItem, AccordionItemContent, AccordionItemTrigger, AccordionRoot } from "../../../components/ui/accordion";
-import { faqs } from "../../../utils/data";
+import { AccordionItem, AccordionItemContent, AccordionItemTrigger, AccordionRoot } from "../../components/ui/accordion";
+import { faqs } from "../../utils/data";
 import { useState } from "react";
 import { motion } from "motion/react";
 

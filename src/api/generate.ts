@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { serverApiKey, serverUrl } from '.';
+import { serverApiKey, keyvaultServerUrl } from '.';
 
 export interface GenerateProps {
     includeUppercase: boolean;
@@ -21,7 +21,7 @@ const generate = async ({ includeUppercase, includeLowercase, includeDigits, inc
     });
 
     const response = await axios.post(
-        `${serverUrl}/generate`,
+        `${keyvaultServerUrl}/generate`,
         data, // Empty Request Body object
         {
             headers: {

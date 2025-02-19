@@ -1,8 +1,8 @@
 import React from "react";
 import { Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { motion } from "motion/react";
-import { Link } from "react-router";
 import { LuArrowRightFromLine } from "react-icons/lu";
+import { Link } from "react-router";
 
 // Chakra + Motion Integration
 const MotionHeading = motion.create(Heading);
@@ -41,7 +41,7 @@ const CallToActionSection: React.FC = () => {
                 Generate strong, unique passwords instantly with KeyVault. Your digital safety is our priority. Join a community of security-conscious users.
             </MotionText>
 
-            <Link to={"/core/generate"}>
+            <Link to={"/gen"}>
                 <MotionButton
                     colorScheme="green"
                     size={"md"}

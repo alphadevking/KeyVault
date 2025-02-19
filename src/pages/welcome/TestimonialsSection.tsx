@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
 import { Box, Flex, Heading, Text, Image, Span, Blockquote, Float, BlockquoteIcon, HStack, Avatar, Spacer } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { testimonials } from "../../../utils/data";
-import { useColorModeValue } from "../../../components/ui/color-mode";
+import { testimonials } from "../../utils/data";
+import { useColorModeValue } from "../../components/ui/color-mode";
 
 import { Navigation, Autoplay } from "swiper/modules";
 import { motion } from "motion/react";
-import { capitalize, toUpperCase } from "../../../utils/changeCase";
+import { capitalize, toUpperCase } from "../../utils/changeCase";
 
 // Chakra + Motion Integration
 const MotionHeading = motion.create(Heading);

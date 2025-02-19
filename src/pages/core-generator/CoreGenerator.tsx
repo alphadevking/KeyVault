@@ -1,12 +1,12 @@
-import { Navbar } from "../components/navbar";
-import { Generator } from "./sections/core-generator";
+import { Navbar } from "../../components/navbar";
+import PWGenerator from "./generate";
 
 const CoreGenerator = () => {
 
     return (
         <>
             <Navbar />
-            <Generator />
+            <PWGenerator />
         </>
     );
 };

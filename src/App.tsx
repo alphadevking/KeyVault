@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router';
-import { CoreGenerator, Welcome } from './pages';
+import { CoreGenerator, Login, Signup, Welcome } from './pages';
 
 // Import Swiper styles
 import "swiper/swiper-bundle.css";
@@ -9,7 +9,9 @@ function App() {
     <>
       <Routes>
         <Route path="/*" element={<Welcome />} />
-        <Route path="/core/generate" element={<CoreGenerator />} />
+        <Route path="/gen" element={<CoreGenerator />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   );

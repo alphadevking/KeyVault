@@ -1,11 +1,9 @@
 import {
     Container,
-    Grid,
-    GridItem,
     Button,
     Text,
     Box,
-    VStack,
+    Stack,
     Fieldset,
     CheckboxGroup,
     Table,
@@ -14,7 +12,6 @@ import {
     Spacer,
     ClipboardIndicator,
     ClipboardTrigger,
-    Flex,
     DialogActionTrigger,
     DialogBody,
     DialogCloseTrigger,
@@ -26,16 +23,21 @@ import {
     Field,
     Input,
     DialogBackdrop,
+    Span,
 } from "@chakra-ui/react";
 import { motion } from "motion/react";
 import { useState, useEffect } from "react";
-import { LuCheck, LuChevronLeft, LuChevronRight, LuClipboard, LuTrash2 } from "react-icons/lu";
+import { LuCheck, LuChevronLeft, LuChevronRight, LuClipboard, LuRefreshCw, LuTrash2 } from "react-icons/lu";
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import { Checkbox } from "../../../components/ui/checkbox";
-import { ClipboardButton, ClipboardRoot } from "../../../components/ui/clipboard";
-import { generatePassword } from "../../../utils/generator";
-import { useColorModeValue } from "../../../components/ui/color-mode";
-import { cloudGenerate } from "../../../api";
+import { Checkbox } from "../../components/ui/checkbox";
+import { ClipboardRoot } from "../../components/ui/clipboard";
+import { generatePassword } from "../../utils/generator";
+import { useColorModeValue } from "../../components/ui/color-mode";
+import { cloudGenerate } from "../../api";
+import DecryptedText from "../../components/DecryptedText/DecryptedText";
+
+// Define a type for the keys
+type LoadingKeys = 'loading'; // Add other keys as needed
 
 const PWGenerator = () => {
 
@@ -48,6 +50,17 @@ const PWGenerator = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [storedPasswords, setStoredPasswords] = useState<string[]>([]);
     const itemsPerPage = 5;
+
+    const [loadingData, setLoadingData] = useState<{ [key in LoadingKeys]: boolean }>({
+        loading: false,
+    });
+
+    const setLoading = (key: LoadingKeys, value: boolean) => {
+        setLoadingData((prevState) => ({
+            ...prevState,
+            [key]: value,
+        }));
+    };
 
     // Utility function to safely parse JSON
     const safeJsonParse = (value: string, fallback: any) => {
@@ -91,6 +104,7 @@ const PWGenerator = () => {
     };
 
     const handleGenerate = async () => {
+        setLoading('loading', true);
         let timeoutId: number | undefined;
 
         const localPromise = new Promise<string>((resolve) => {
@@ -102,7 +116,9 @@ const PWGenerator = () => {
 
         try {
             const cloudPasswordPromise = handleCloudGenerate();
+            // Race between cloud and local generation
             const cloudPassword = await Promise.race([cloudPasswordPromise, localPromise]);
+            // console.info("Cloud password generated");
             setPassword(cloudPassword);
         } catch (error) {
             console.error(error);
@@ -110,6 +126,7 @@ const PWGenerator = () => {
             setPassword(localPassword);
         } finally {
             window.clearTimeout(timeoutId);
+            setLoading('loading', false);
         }
     };
 
@@ -162,57 +179,50 @@ const PWGenerator = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Text fontSize="2xl" fontWeight="bold">Core Generator</Text>
+                    <Text fontSize="2xl" fontWeight="bold" mb={4} textAlign="center">Core Generator</Text>
                 </motion.div>
-                <Flex justifyContent="center" alignItems="start" gap={4} flexDirection={{ base: "column", md: "row" }}>
-                    <Box
-                        p={6}
-                        borderRadius="lg"
-                        boxShadow="lg"
-                        textAlign="center"
-                        w={{ base: "100%", md: "60%" }}
-                    >
-                        <VStack mt={4}>
-                            <Fieldset.Root textAlign={"left"}>
-                                <CheckboxGroup defaultValue={["uppercase", "lowercase", "digits", "symbols"]} name="keyConfig">
-                                    <Fieldset.Legend fontSize="sm" mb="2">
-                                        Modify key configuration
-                                    </Fieldset.Legend>
-                                    <Fieldset.Content>
-                                        <Checkbox variant={"subtle"} checked={includeUppercase} onCheckedChange={(e) => setIncludeUppercase(!!e.checked)} value="uppercase">Uppercase</Checkbox>
-                                        <Checkbox variant={"subtle"} checked={includeLowercase} onCheckedChange={(e) => setIncludeLowercase(!!e.checked)} value="lowercase">Lowercase</Checkbox>
-                                        <Checkbox variant={"subtle"} checked={includeDigits} onCheckedChange={(e) => setIncludeDigits(!!e.checked)} value="digits">Digits</Checkbox>
-                                        <Checkbox variant={"subtle"} checked={includeSymbols} onCheckedChange={(e) => setIncludeSymbols(!!e.checked)} value="symbols">Symbols</Checkbox>
-                                    </Fieldset.Content>
-                                </CheckboxGroup>
-                            </Fieldset.Root>
-                        </VStack>
-                        <Grid templateColumns={{ base: "1fr", md: "1fr 2fr" }} gap={6} mt={4}>
-                            <GridItem>
-                                <Button bgBlendMode={"overlay"} onClick={async () => await handleGenerate()} w="full">
-                                    Generate Password
-                                </Button>
-                            </GridItem>
-                        </Grid>
-
-                        {password && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                <Box mt={6} p={4} borderRadius="md" wordBreak="break-all">
-                                    <Text fontSize="xl" mb={2}>{password}</Text>
+                <Stack justifyContent="center" alignItems="center" gap={4}>
+                    <Fieldset.Root textAlign={"center"} justifyContent="center" alignItems="center">
+                        <CheckboxGroup defaultValue={["uppercase", "lowercase", "digits", "symbols"]} name="keyConfig">
+                            <Fieldset.Legend fontSize="xs" mb="2">
+                                Modify key configuration
+                            </Fieldset.Legend>
+                            <Fieldset.Content>
+                                <Stack colorPalette={"green"} direction="row" gap={2} wrap={"wrap"}>
+                                    <Checkbox size={"xs"} variant={"subtle"} checked={includeUppercase} onCheckedChange={(e) => setIncludeUppercase(!!e.checked)} value="uppercase">Uppercase</Checkbox>
+                                    <Checkbox size={"xs"} variant={"subtle"} checked={includeLowercase} onCheckedChange={(e) => setIncludeLowercase(!!e.checked)} value="lowercase">Lowercase</Checkbox>
+                                    <Checkbox size={"xs"} variant={"subtle"} checked={includeDigits} onCheckedChange={(e) => setIncludeDigits(!!e.checked)} value="digits">Digits</Checkbox>
+                                    <Checkbox size={"xs"} variant={"subtle"} checked={includeSymbols} onCheckedChange={(e) => setIncludeSymbols(!!e.checked)} value="symbols">Symbols</Checkbox>
+                                </Stack>
+                            </Fieldset.Content>
+                        </CheckboxGroup>
+                        <Stack direction={"row"} alignItems={"center"} gap={-4}>
+                            <Stack direction={"row"} alignItems={"center"} position={"relative"} w="fit">
+                                <Input alignItems={"center"} justifyItems={"center"} w="fit" h="fit" p={3} pr={16} asChild>
+                                    <Span fontSize={"lg"} fontFamily={"monospace"}>
+                                        <DecryptedText animateOn="view" className="" revealDirection="end" text={password} />
+                                    </Span>
+                                </Input>
+                                <IconButton disabled={loadingData.loading} className={`${loadingData.loading && "animate-spin"}`} colorPalette={"green"} position={"absolute"} right={2} variant={"plain"} size={"2xs"} as={LuRefreshCw} onClick={async () => await handleGenerate()} />
+                            </Stack>
+                            {
+                                password && (
                                     <ClipboardRoot value={password} timeout={3000}>
-                                        <ClipboardButton />
+                                        <ClipboardTrigger asChild>
+                                            <IconButton size={"xs"} variant="plain">
+                                                <ClipboardIndicator copied={<LuCheck />}>
+                                                    <LuClipboard />
+                                                </ClipboardIndicator>
+                                            </IconButton>
+                                        </ClipboardTrigger>
                                     </ClipboardRoot>
-                                </Box>
-                            </motion.div>
-                        )}
-                    </Box>
+                                )
+                            }
+                        </Stack>
+                    </Fieldset.Root>
 
                     {storedPasswords.length > 0 && (
-                        <Box p={6} borderRadius="lg" boxShadow="md" w={{ base: "100%", md: "40%" }}>
+                        <Box p={6} borderRadius="lg" shadow="sm" w="full">
                             <Text fontSize={"sm"} fontWeight="semibold">
                                 Previously Generated Passwords
                             </Text>
@@ -238,7 +248,7 @@ const PWGenerator = () => {
                                         </Button>
                                     )}
                                     {
-                                        storedPasswords.length > 0 && (
+                                        storedPasswords.length >= 2 && (
                                             <Button
                                                 size="xs"
                                                 variant="outline"
@@ -256,7 +266,15 @@ const PWGenerator = () => {
                                 </HStack>
                             </HStack>
 
-                            <Table.Root variant="line" size="sm" fontSize={"xs"} w={"full"}>
+                            <Table.Root data-state="open"
+                                _open={{
+                                    animationName: "fade-in, scale-in",
+                                    animationDuration: "300ms",
+                                }}
+                                _closed={{
+                                    animationName: "fade-out, scale-out",
+                                    animationDuration: "120ms",
+                                }} variant="line" size="sm" fontSize={"xs"} w={"full"}>
                                 <Table.Header>
                                     <Table.Row>
                                         <Table.ColumnHeader>
@@ -377,7 +395,7 @@ const PWGenerator = () => {
                             </HStack>
                         </Box>
                     )}
-                </Flex>
+                </Stack>
             </Container>
 
             <DialogRoot

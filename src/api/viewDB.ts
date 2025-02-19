@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { serverApiKey, serverUrl } from '.';
+import { serverApiKey, keyvaultServerUrl } from '.';
 
 const viewDB = async () => {
     await axios.post(
-        `${serverUrl}/viewDB`,
+        `${keyvaultServerUrl}/viewDB`,
         {}, // Empty Request Body object
         {
             headers: {

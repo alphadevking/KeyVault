@@ -18,7 +18,17 @@ h6 {
     font-family: "Raleway", serif;
 }
 
-*{
+* {
     scroll-behavior: smooth;
     letter-spacing: -.3px;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
