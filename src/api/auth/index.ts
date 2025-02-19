@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import axiosInstance from '../../utils/axiosInstance';
-import { keyvaultServerUrl, serverApiKey } from '..';
+import { multiauthServerUrl, serverApiKey } from '..';
 
 interface LocalRegisterData {
   name?: string;
@@ -26,7 +26,7 @@ async function localRegister(data: LocalRegisterData) {
   const config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: `${keyvaultServerUrl}/users/register`,
+    url: `${multiauthServerUrl}/users/register`,
     headers: {
       'Content-Type': 'application/json',
       'x-api-key': serverApiKey,
@@ -69,7 +69,7 @@ async function localLogin(data: LocalLoginData) {
   });
 
   try {
-    const response = await axiosInstance.post( `${keyvaultServerUrl}/keyvault/auth/login`, jsonData);
+    const response = await axiosInstance.post( `${multiauthServerUrl}/keyvault/auth/login`, jsonData);
 
     // With HTTP‑only cookies, you don't extract the token on the client side.
     // The server sets the cookie, and it is sent automatically with future requests.
