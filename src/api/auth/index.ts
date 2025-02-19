@@ -69,7 +69,7 @@ async function localLogin(data: LocalLoginData) {
   });
 
   try {
-    const response = await axiosInstance.post( `${multiauthServerUrl}/keyvault/auth/login`, jsonData);
+    const response = await axiosInstance.post( `${multiauthServerUrl}/auth/login`, jsonData);
 
     // With HTTP‑only cookies, you don't extract the token on the client side.
     // The server sets the cookie, and it is sent automatically with future requests.

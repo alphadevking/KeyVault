@@ -21,7 +21,7 @@ const generate = async ({ includeUppercase, includeLowercase, includeDigits, inc
     });
 
     const response = await axios.post(
-        `${keyvaultServerUrl}/generate`,
+        `${keyvaultServerUrl}/keyvault/generate`,
         data, // Empty Request Body object
         {
             headers: {
